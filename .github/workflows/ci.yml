@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Servicio de IA (instalar, compilar y probar)
+        working-directory: servicio-ia
+        run: |
+          npm install --no-audit --no-fund
+          npm test
+
+      - name: API (compilar)
+        run: dotnet build api/Immersic.Api.csproj -c Release
+
+      - name: Prueba de punta a punta
+        run: bash scripts/prueba-humo.sh
