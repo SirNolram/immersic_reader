@@ -1,0 +1,21 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+
+# Base de datos SQLite local
+*.db
+*.db-shm
+*.db-wal
+
+# Node.js
+node_modules/
+dist/
+npm-debug.log*
+
+# Editores y sistema operativo
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
